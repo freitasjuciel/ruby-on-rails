@@ -1,0 +1,19 @@
+<%= simple_form_for(@exercise) do |f| %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+          <% if @exercise.errors.any? %>
+            <div class="alert alert-danger alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <p><strong><%= pluralize(@exercise.errors.count, "erro") %></strong> não permiti salvar o exercicio.</p>
+            </div>
+          <% end %>
+
+          <%= f.input :name, placeholder: 'Informe o nome do exercicio' %>
+          <%= f.association :muscle_group, collection: MuscleGroup.all.order('name'), prompt: "Selecione o grupo muscular" %>
+      </div>
+      <div class="panel-footer" style="text-align: right;">
+        <%= f.button :submit, class: 'btn-success' %>
+        <%= link_to 'Cancelar', exercises_path, :class => 'btn btn-default' %>
+      </div>
+    </div>
+<% end %>

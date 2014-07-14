@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1>Exercicios <small>Consulta</small></h1>
+  <div class="buttons">
+    <%= link_to 'Novo Exercicio', new_exercise_path, class: 'btn btn-primary' %>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading"></div>
+    <table class="table table-hover table-responsive">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th style="width: 150px;">Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @exercises.each do |exercise| %>
+          <tr id="<%= exercise.id %>">
+            <td><%= exercise.name %></td>
+            <td>
+              <%= link_to exercise, class: 'btn btn-default btn-xs' do %><span class="glyphicon glyphicon-eye-open"></span><% end %>
+              <%= link_to edit_exercise_path(exercise), class: 'btn btn-default btn-xs' do %><span class="glyphicon glyphicon-pencil"></span><% end %>
+              <%= link_to exercise, method: :delete, :remote => true, data: { confirm: 'Você deseja excluir o exercicio "' + exercise.name + '"?', title: 'Excluir Exercicio' }, class: 'btn btn-default btn-xs' do %><span class="glyphicon glyphicon-trash"></span><% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <div class="panel-footer">
+    <%= page_navigation_links @exercises %>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<%= simple_form_for(@student) do |f| %>
+    <div class="panel panel-default">
+        <div class="panel-body">
+          <% if @student.errors.any? %>
+            <div class="alert alert-danger alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <p><strong><%= pluralize(@student.errors.count, "erro") %></strong> verifique os campos abaixo.</p>
+            </div>
+          <% end %>
+
+          <%= f.input :name, placeholder: 'Informe o nome do aluno' %>
+          <div class="row">
+            <%= f.input :birthday, start_year: Date.today.year - 90, end_year: Date.today.year - 10, include_blank: true, placeholder: 'Informe a data de nascimento do aluno', wrapper_html: { class: 'col-lg-6 col-md-9 col-sm-8 col-xs-12' }, input_html: { style: 'width: 32%; display: inline-block;' } %>
+            <%= f.input :gender, collection:[:male,:female], wrapper_html: { class: 'col-lg-2 col-md-3 col-sm-4 col-xs-12' } %>
+          </div>
+          <div class="row">
+            <%= f.input :phone, as: :tel, placeholder: 'Informe o telefone', wrapper_html: { class: 'col-lg-3 col-md-4 col-sm-6 col-xs-12' } %>
+            <%= f.input :cellphone, placeholder: 'Informe o celular', wrapper_html: { class: 'col-lg-3 col-md-4 col-sm-6 col-xs-12' } %>
+          </div>
+          <%= f.input :observation, placeholder: 'Informe o nome do aluno' %>
+        </div>
+        <div class="panel-footer" style="text-align: right;">
+            <%= f.button :submit, class: 'btn-success' %>
+            <%= link_to 'Cancelar', students_path, :class => 'btn btn-default' %>
+        </div>
+    </div>
+<% end %>

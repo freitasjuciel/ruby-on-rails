@@ -1,0 +1,38 @@
+<%= simple_form_for @training,
+    wrapper_mappings: {
+        check_boxes: :vertical_radio_and_checkboxes,
+        radio_buttons: :vertical_radio_and_checkboxes
+    } do |f| %>
+  <% if @training.errors.any? %>
+        <div class="alert alert-danger alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <p><strong><%= pluralize(@training.errors.count, "erro") %></strong> não permiti salvar o grupo muscular.</p>
+        </div>
+  <% end %>
+
+  <%= f.input :name, placeholder: 'Informe o nome do treino' %>
+  <%= f.input :series, placeholder: 'Informe o numero de series para o treino'%>
+  <%= f.input :repetitions, placeholder: 'Informe a quantidade de repetições par ao treino' %>
+  <%= f.input :time, placeholder: 'Informe o tempo para os exercicios aerobicos'%>
+
+  <div class="exercise-select">
+    <p>Abaixo está listado todos os exercicios cadastrados, os exercicios estão agrupados pelo seu grupo muscular. Selecione os exercicios que deseja incluir neste treino.</p>
+    <% MuscleGroup.all.each do |musclegroup| %>
+      <% if Exercise.where(:muscle_group_id => musclegroup.id ).any? %>
+        <div class="muscle-group-container">
+          <strong class="title"><%=musclegroup.name%></strong>
+              <% Exercise.where(:muscle_group_id => musclegroup.id ).each do |exercise| %>
+                  <span class="exercise-input">
+                    <%= check_box_tag 'training[exercise_ids][]', exercise.id, @training.exercise_ids.include?(exercise.id), :id => 'training[exercise_ids][' + exercise.id.to_s + ']' -%>
+                    <%= label_tag 'training[exercise_ids][' + exercise.id.to_s + ']', exercise.name %>
+                  </span>
+              <% end %>
+        </div>
+      <%end%>
+    <%end%>
+  </div>
+
+  <%= f.button :submit, class: 'btn-success' %>
+  <%= link_to 'Cancelar', trainings_path, :class => 'btn btn-default' %>
+
+<% end %>

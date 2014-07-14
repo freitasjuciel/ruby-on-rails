@@ -1,0 +1,37 @@
+<div class="page-header">
+<h1>Alunos <small>Consulta</small></h1>
+<div class="buttons">
+  <%= link_to 'Novo Aluno', new_student_path, class: 'btn btn-default btn-primary' %>
+</div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Alunos</div>
+  <table class="table table-hover">
+      <thead>
+        <tr>
+          <th style="width: 50%;">Nome</th>
+          <th>Idade</th>
+          <th>Telefone</th>
+          <th>Celular</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @students.each do |student| %>
+          <tr id="<%= student.id %>">
+            <td><%= student.name %></td>
+            <td><%= student.age %></td>
+            <td><%= student.phone %></td>
+            <td><%= student.cellphone %></td>
+            <td>
+              <%= link_to student, class: 'btn btn-default btn-xs' do %><span class="glyphicon glyphicon-eye-open"></span><% end %>
+              <%= link_to edit_student_path(student), class: 'btn btn-default btn-xs' do %><span class="glyphicon glyphicon-pencil"></span><% end %>
+              <%= link_to student, method: :delete, :remote => true, data: { confirm: 'Você deseja excluir o aluno "' + student.name + '"?' }, class: 'btn btn-default btn-xs' do %><span class="glyphicon glyphicon-trash"></span><% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+  <%= page_navigation_links @students %>
+</div>

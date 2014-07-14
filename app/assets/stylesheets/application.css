@@ -1,0 +1,97 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require bootstrap
+ *= require_self
+ */
+
+/*
+ * My styles
+ */
+.exercise-select{
+    display: inline-block;
+}
+
+.exercise-select .muscle-group-container{
+    margin-bottom: 10px;
+}
+
+.exercise-select .muscle-group-container .title{
+    display: block;
+}
+
+.exercise-select .muscle-group-container .exercise-input{
+    display: inline-block;
+    width: auto;
+    height: 30px;
+    padding: 5px 5px;
+}
+
+.exercise-select .muscle-group-container .exercise-input label{
+    font-weight: normal;
+    position: relative;
+    bottom: 4px;
+}
+
+/*
+ * Bootstrap overrides
+ */
+a:hover{
+    background-color: #fff;
+}
+
+a:visited{
+    color: #fff;
+}
+
+a.btn-default:visited{
+    color: #333333;
+}
+
+a.btn span{
+    color: #666;
+}
+
+.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td{
+    vertical-align: middle;
+}
+
+.page-header{
+    margin-top: 5px;
+}
+
+.page-header h1{
+    display: inline-block;
+}
+
+.page-header .buttons{
+    display: inline-block;
+    float: right;
+    padding: 27px 0px;
+}
+
+.pagination-container{
+    text-align: center;
+}
+
+.pagination-container .pagination{
+    margin: 0;
+}
+
+.modal-header {
+    padding: 5px 15px;
+}
+
+.modal-header .close {
+    margin-top: 2px;
+}

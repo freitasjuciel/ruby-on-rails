@@ -1,0 +1,39 @@
+<div class="page-header">
+  <h1>Treinos <small>Consulta</small></h1>
+  <div class="buttons">
+    <%= link_to 'Novo Treino', new_training_path, class: 'btn btn-primary' %>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading"></div>
+  <table class="table table-hover table-responsive">
+      <thead>
+        <tr>
+          <th style="width: 50%">Nome</th>
+          <th>Series</th>
+          <th>Repetições</th>
+          <th>Tempo</th>
+          <th colspan="3">Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @trainings.each do |training| %>
+          <tr id="<%=training.id%>">
+            <td><%= training.name %></td>
+            <td><%= training.series %></td>
+            <td><%= training.repetitions %></td>
+            <td><%= training.time %></td>
+            <td>
+              <%= link_to training, class: 'btn btn-default btn-xs' do %><span class="glyphicon glyphicon-eye-open"></span><% end %>
+              <%= link_to edit_training_path(training), class: 'btn btn-default btn-xs' do %><span class="glyphicon glyphicon-pencil"></span><% end %>
+              <%= link_to training, method: :delete, :remote => true, data: { confirm: 'Você deseja excluir o treino "' + training.name + '"?', title: 'Excluir Treino' }, class: 'btn btn-default btn-xs' do %><span class="glyphicon glyphicon-trash"></span><% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <div class="panel-footer">
+    <%= page_navigation_links @trainings %>
+  </div>
+</div>

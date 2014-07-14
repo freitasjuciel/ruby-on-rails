@@ -1,0 +1,19 @@
+<div class="page-header">
+  <h1>Grupo Muscular <small>Detalhes</small></h1>
+  <div class="buttons">
+    <%= link_to 'Editar', edit_muscle_group_path(@muscle_group), :class => 'btn btn-primary' %>
+    <%= link_to 'Excluir', @muscle_group, method: :delete, :remote => false, data: { confirm: 'Você deseja excluir o grupo muscular "' + @muscle_group.name + '"?', title: 'Excluir Grupo Muscular' }, class: 'btn btn-danger' %>
+    <%= link_to 'Voltar', muscle_groups_path, :class => 'btn btn-default' %>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div>
+      <label class="control-label">Nome</label>
+      <div>
+        <p class="form-control-static"><%= @muscle_group.name %></p>
+      </div>
+    </div>
+  </div>
+</div>
+

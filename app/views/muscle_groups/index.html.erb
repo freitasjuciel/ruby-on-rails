@@ -1,0 +1,35 @@
+<div class="page-header">
+  <h1>Grupo Muscular <small>Consulta</small></h1>
+  <div class="buttons">
+    <%= link_to 'Novo Grupo Muscular', new_muscle_group_path, class: 'btn btn-primary' %>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading"></div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th style="width: 150px;">Ações</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @muscle_groups.each do |muscle_group| %>
+          <tr id="<%=muscle_group.id %>">
+            <td><%= muscle_group.name %></td>
+            <td>
+                <%= link_to muscle_group, class: 'btn btn-default btn-xs' do %><span class="glyphicon glyphicon-eye-open"></span><% end %>
+                <%= link_to edit_muscle_group_path(muscle_group), class: 'btn btn-default btn-xs' do %><span class="glyphicon glyphicon-pencil"></span><% end %>
+                <%= link_to muscle_group, method: :delete, :remote => true, data: { confirm: 'Você deseja excluir o grupo muscular "' + muscle_group.name + '"?', title: 'Excluir Grupo Muscular' }, class: 'btn btn-default btn-xs' do %><span class="glyphicon glyphicon-trash"></span><% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+  </table>
+  <div class="panel-footer">
+    <%= page_navigation_links @muscle_groups %>
+  </div>
+</div>
+
+

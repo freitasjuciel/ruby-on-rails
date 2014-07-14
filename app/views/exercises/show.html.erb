@@ -1,0 +1,24 @@
+<div class="page-header">
+  <h1>Exercicio <small>Detalhes</small></h1>
+  <div class="buttons">
+    <%= link_to 'Editar', edit_exercise_path(@exercise), :class => 'btn btn-primary' %>
+    <%= link_to 'Excluir', @exercise, method: :delete, :remote => false, data: { confirm: 'Você deseja excluir o exercicio "' + @exercise.name + '"?', title: 'Excluir Exercicio' }, class: 'btn btn-danger' %>
+    <%= link_to 'Voltar', exercises_path, :class => 'btn btn-default' %>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div>
+      <label class="control-label">Nome</label>
+      <div>
+        <p class="form-control-static"><%= @exercise.name %></p>
+      </div>
+    </div>
+    <div>
+      <label class="control-label">Grupo Muscular</label>
+      <div>
+        <p class="form-control-static"><%= @exercise.muscle_group.name %></p>
+      </div>
+    </div>
+  </div>
+</div>
